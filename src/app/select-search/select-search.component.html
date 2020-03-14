@@ -1,1 +1,10 @@
-<p>select-search works!</p>
+<mat-form-field *ngIf="entityFilterCtrl">
+    <mat-select [formControl]="entityCtrl" #singleSelect (selectionChange)="onChange($event)">
+        <ngx-mat-select-search 
+            [formControl]="entityFilterCtrl" 
+            [placeholderLabel]="'Search'"
+            [noEntriesFoundLabel]="'Not found'">
+        </ngx-mat-select-search>
+        <mat-option *ngFor="let entity of filteredEntities | async" [value]="entity.url">{{entity.name}}</mat-option>
+    </mat-select>
+</mat-form-field>
